@@ -8,10 +8,11 @@
 	"buffers":
 	[
 		{
-			"file": "radar-alagamento-control-panel.sublime-project",
+			"file": "README.md",
 			"settings":
 			{
-				"buffer_size": 45,
+				"buffer_size": 105703,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		}
@@ -118,11 +119,11 @@
 			[
 				{
 					"buffer": 0,
-					"file": "radar-alagamento-control-panel.sublime-project",
-					"semi_transient": true,
+					"file": "README.md",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 45,
+						"buffer_size": 105703,
 						"regions":
 						{
 						},
@@ -140,27 +141,12 @@
 							{
 								"close":
 								{
-									"1":
-									[
-										43,
-										44
-									]
 								},
 								"icon":
 								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/curly_bracket.png",
-										"brackethighlighter.default"
-									]
 								},
 								"open":
 								{
-									"1":
-									[
-										0,
-										1
-									]
 								},
 								"unmatched":
 								{
@@ -224,10 +210,12 @@
 								"bh_angle_close",
 								"bh_angle_content"
 							],
-							"syntax": "Packages/zzz A File Icon zzz/aliases/JSON (Sublime).sublime-syntax"
+							"syntax": "Packages/MarkdownEditing/Markdown.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 855.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
