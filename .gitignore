@@ -84,3 +84,5 @@ src/*.css
 !src/stylesheets/**/*.scss
 
 *.gz
+
+*.sublime-workspace
