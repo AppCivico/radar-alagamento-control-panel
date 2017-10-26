@@ -20,5 +20,9 @@
     "start": "npm-run-all -p watch:css build:js",
     "test": "react-scripts test --env=jsdom",
     "watch:css": "npm run build:css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/stylesheets/ -o src/ --watch --recursive"
+  },
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "font-awesome": "^4.7.0"
   }
 }
