@@ -1,3 +1,8 @@
-@import
-	'example/App',
-	'example/index';
+$fa-font-path: 'fonts';
+$icon-font-path: 'fonts/bootstrap/';
+
+// Bootstrap 3
+@import 'bootstrap-sass/assets/stylesheets/bootstrap';
+
+// Theme AdminLTE
+@import 'vendor/adminlte/adminlte';
