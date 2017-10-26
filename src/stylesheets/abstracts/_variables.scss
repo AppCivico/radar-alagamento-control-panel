@@ -1,3 +1,20 @@
-// Change font-awesome and bootstrap path variables
+// Override font-awesome and bootstrap path variables
 $fa-font-path: 'fonts';
 $icon-font-path: 'fonts/bootstrap/';
+
+
+// Override AdminLTE variables
+//Primary
+$light-blue: #28cfce;
+//Danger
+$red: #f54f4f;
+//Success
+$green: #79cece;
+//Info
+$aqua: #10a1ba;
+//Warning
+$yellow: #f1a225;
+$blue: #2d506f;
+$navy: #004e70;
+$black: #5d5d5d;
+$gray: #eeeeee;
