@@ -75,9 +75,9 @@ rules:
   nesting-depth:
     - 1
     - max-depth: 3
-  no-color-hex: 2
+  no-color-hex: 0
   no-color-keywords: 2
-  no-color-literals: 2
+  no-color-literals: 0
   no-css-comments: 0
   no-debug: 1
   no-duplicate-properties: 2
