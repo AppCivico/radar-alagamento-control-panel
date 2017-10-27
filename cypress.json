@@ -1,0 +1,8 @@
+{
+  "projectId": "akfhqx",
+  "reporter": "junit",
+  "reporterOptions": {
+    "mochaFile": "./cypress/results/tests-output.xml",
+    "toConsole": true
+  }
+}
