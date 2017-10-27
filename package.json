@@ -16,16 +16,21 @@
     "build:css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/stylesheets/ -o src/",
     "build:js": "react-scripts start",
     "build": "npm run build:css && react-scripts build",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
     "eject": "react-scripts eject",
     "lint:es": "eslint --ext .js src/javascripts/app",
     "lint:sass": "sass-lint -c .sass-lint.yml 'src/stylesheets/**/*.scss' -v -q -i 'src/stylesheets/vendor/**/*.scss'",
     "lint": "npm-run-all --parallel lint:es lint:sass",
+    "prebuild": "npm run cypress:run",
     "start": "npm-run-all -p watch:css build:js",
     "test": "react-scripts test --env=jsdom",
     "watch:css": "npm run build:css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/stylesheets/ -o src/ --watch --recursive"
   },
   "devDependencies": {
     "bootstrap-sass": "^3.3.7",
-    "font-awesome": "^4.7.0"
+    "cypress": "^1.0.2",
+    "font-awesome": "^4.7.0",
+    "mocha-junit-reporter": "^1.15.0"
   }
 }
