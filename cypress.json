@@ -2,7 +2,7 @@
   "projectId": "akfhqx",
   "reporter": "junit",
   "reporterOptions": {
-    "mochaFile": "./test-results/cypress.xml",
+    "mochaFile": "./test-reports/cypress.xml",
     "toConsole": true
   },
   "videoRecording": false
