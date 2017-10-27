@@ -64,6 +64,7 @@ typings/
 
 # testing
 /coverage
+/cypress
 
 # production
 /build
@@ -84,5 +85,4 @@ src/*.css
 !src/stylesheets/**/*.scss
 
 *.gz
-
 *.sublime-workspace
