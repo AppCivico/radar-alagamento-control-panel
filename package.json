@@ -17,6 +17,9 @@
     "build:js": "react-scripts start",
     "build": "npm run build:css && react-scripts build",
     "eject": "react-scripts eject",
+    "lint:es": "eslint --ext .js src/javascripts/app",
+    "lint:sass": "sass-lint -c .sass-lint.yml 'src/stylesheets/**/*.scss' -v -q -i 'src/stylesheets/vendor/**/*.scss'",
+    "lint": "npm-run-all --parallel lint:es lint:sass",
     "start": "npm-run-all -p watch:css build:js",
     "test": "react-scripts test --env=jsdom",
     "watch:css": "npm run build:css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/stylesheets/ -o src/ --watch --recursive"
