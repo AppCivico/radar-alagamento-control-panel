@@ -1,5 +1,5 @@
 import React from 'react';
-import userDefault from '../../../../images/user-default.png';
+import userDefault from '../../../images/user-default.png';
 
 class Header extends React.Component {
 	constructor(props) {
