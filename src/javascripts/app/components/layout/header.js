@@ -7,10 +7,10 @@ class Header extends React.Component {
     this.state = {isToggleOn: false};
 
     // This binding is necessary to make `this` work in the callback
-    this.handleClick = this.handleClick.bind(this);
+    this.dropdownClick = this.dropdownClick.bind(this);
   }
 
-	handleClick() {
+	dropdownClick() {
     this.setState(prevState => ({
       isToggleOn: !prevState.isToggleOn
     }));
@@ -31,7 +31,7 @@ class Header extends React.Component {
 
 					<div className="navbar-custom-menu">
 						<ul className="nav navbar-nav">
-							<li className={`dropdown user user-menu ${this.state.isToggleOn ? 'open' : ''}`} onClick={this.handleClick}>{
+							<li className={`dropdown user user-menu ${this.state.isToggleOn ? 'open' : ''}`} onClick={this.dropdownClick}>{
 				        // eslint-disable-next-line jsx-a11y/href-no-hash
 				        }<a href="#" className="dropdown-toggle" data-toggle="dropdown">
 									<img src={userDefault} className="user-image" alt="User Avatar" />
