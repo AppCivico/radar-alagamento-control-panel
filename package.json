@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build:css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/stylesheets/ -o src/",
-    "build:js": "react-scripts start",
+    "build:js": "NODE_PATH=src react-scripts start",
     "build": "npm run build:css && react-scripts build",
     "cypress:open": "cypress open",
     "cypress:test": "cypress run --reporter spec",
@@ -25,7 +25,7 @@
     "lint": "npm-run-all --parallel lint:es lint:sass",
     "prebuild": "npm run cypress:run && npm run lint",
     "start": "npm-run-all -p watch:css build:js",
-    "test": "react-scripts test --env=jsdom",
+    "test": "NODE_PATH=src react-scripts test --env=jsdom",
     "watch:css": "npm run build:css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/stylesheets/ -o src/ --watch --recursive"
   },
   "devDependencies": {
