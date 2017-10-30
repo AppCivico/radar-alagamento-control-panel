@@ -2,6 +2,20 @@ import React from 'react';
 import userDefault from '../../../../images/user-default.png';
 
 class Header extends React.Component {
+	constructor(props) {
+    super(props);
+    this.state = {isToggleOn: false};
+
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+	handleClick() {
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }));
+  }
+
 	render() {
 		return (
 			<header className="main-header">
@@ -17,7 +31,7 @@ class Header extends React.Component {
 
 					<div className="navbar-custom-menu">
 						<ul className="nav navbar-nav">
-							<li className="dropdown user user-menu">{
+							<li className={`dropdown user user-menu ${this.state.isToggleOn ? 'open' : ''}`} onClick={this.handleClick}>{
 				        // eslint-disable-next-line jsx-a11y/href-no-hash
 				        }<a href="#" className="dropdown-toggle" data-toggle="dropdown">
 									<img src={userDefault} className="user-image" alt="User Avatar" />
