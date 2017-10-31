@@ -16,6 +16,10 @@ class Header extends React.Component {
     }));
   }
 
+  sidebarToggle() {
+  	document.body.classList.toggle('sidebar-collapse')
+  }
+
 	render() {
 		return (
 			<header className="main-header">
@@ -25,7 +29,7 @@ class Header extends React.Component {
 				</a>
 				<nav className="navbar navbar-static-top">{
 		        // eslint-disable-next-line jsx-a11y/href-no-hash
-		        }<a href="#" className="sidebar-toggle" data-toggle="push-menu" role="button">
+		        }<a href="#" className="sidebar-toggle" data-toggle="push-menu" role="button" onClick={this.sidebarToggle}>
 						<span className="sr-only">toggle</span>
 					</a>
 
