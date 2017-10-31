@@ -1,4 +1,5 @@
 import React from 'react';
+import Notification from '../component/notification';
 
 class Notifications extends React.Component {
 	constructor(props) {
@@ -52,34 +53,11 @@ class Notifications extends React.Component {
 	                  <th>Status</th>
 	                  <th>Reason</th>
 	                </tr>
-	                <tr>
-	                  <td>183</td>
-	                  <td>John Doe</td>
-	                  <td>11-7-2014</td>
-	                  <td><span className="label label-success">Approved</span></td>
-	                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-	                </tr>
-	                <tr>
-	                  <td>219</td>
-	                  <td>Alexander Pierce</td>
-	                  <td>11-7-2014</td>
-	                  <td><span className="label label-warning">Pending</span></td>
-	                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-	                </tr>
-	                <tr>
-	                  <td>657</td>
-	                  <td>Bob Doe</td>
-	                  <td>11-7-2014</td>
-	                  <td><span className="label label-primary">Approved</span></td>
-	                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-	                </tr>
-	                <tr>
-	                  <td>175</td>
-	                  <td>Mike Doe</td>
-	                  <td>11-7-2014</td>
-	                  <td><span className="label label-danger">Denied</span></td>
-	                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-	                </tr>
+	                {
+	                	this.state.notifications.map((notification) => {
+	                		return <Notification key={notification.id} notification={notification}></Notification>
+	                	})
+	                }
 	              </tbody></table>
 	            </div>
 	            <div className="box-footer clearfix">
