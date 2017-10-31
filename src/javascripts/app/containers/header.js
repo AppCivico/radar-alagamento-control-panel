@@ -24,8 +24,8 @@ class Header extends React.Component {
 		return (
 			<header className="main-header">
 				<a href="/" className="logo">
-					<span className="logo-mini">RdA</span>
-					<span className="logo-lg">Radar do <strong>Alagamento</strong></span>
+					<span className="logo-mini">Rd<b>A</b></span>
+					<span className="logo-lg">Radar do <b>Alagamento</b></span>
 				</a>
 				<nav className="navbar navbar-static-top">{
 		        // eslint-disable-next-line jsx-a11y/href-no-hash
