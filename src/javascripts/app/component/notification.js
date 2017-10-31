@@ -7,12 +7,12 @@ class Notification extends React.Component {
 
 		return (
 			<tr>
-        <td>{notification.id}</td>
-        <td>{notification.title}</td>
-        <td>{notification.date}</td>
-        <td><span className={`label label-${notification.level}`}>{notification.level}</span></td>
-        <td>{notification.description}</td>
-      </tr>
+				<td>{notification.id}</td>
+				<td>{notification.title}</td>
+				<td>{notification.date}</td>
+				<td><span className={`label label-${notification.level}`}>{notification.level}</span></td>
+				<td>{notification.description}</td>
+			</tr>
 		)
 	}
 }
