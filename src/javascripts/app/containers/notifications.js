@@ -15,9 +15,8 @@ class Notifications extends React.Component {
 		fetch('http://localhost:3030/notifications').then((response) => {
 		  return response.json();
 		}).then((response) => {
-		  this.setState({
-		  	notifications: response.data
-		  });
+			// set state
+			this.setState({notifications: response});
 		});
   }
 
