@@ -87,3 +87,5 @@ src/*.css
 
 *.gz
 *.sublime-workspace
+
+*.sublime-project
