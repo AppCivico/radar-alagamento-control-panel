@@ -1,0 +1,32 @@
+{
+  "notifications": [
+    {
+      "id": 1,
+      "title": "Lorem ipsum 1",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet",
+      "date": "20172010",
+      "level": "info"
+    },
+    {
+      "id": 2,
+      "title": "Lorem ipsum 1",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet",
+      "date": "20172010",
+      "level": "danger"
+    },
+    {
+      "id": 3,
+      "title": "Lorem ipsum 1",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet",
+      "date": "20172010",
+      "level": "warning"
+    },
+    {
+      "id": 4,
+      "title": "Lorem ipsum 1",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet",
+      "date": "20172010",
+      "level": "success"
+    }
+  ]
+}
