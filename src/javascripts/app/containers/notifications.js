@@ -1,5 +1,5 @@
 import React from 'react';
-import Notification from '../component/notification';
+import Notification from '../components/notification';
 
 class Notifications extends React.Component {
 	constructor(props) {
