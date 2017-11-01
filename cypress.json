@@ -5,5 +5,6 @@
     "mochaFile": "./test-reports/cypress.xml",
     "toConsole": true
   },
-  "videoRecording": false
+  "videoRecording": false,
+  "integrationFolder": "./src/javascripts/spec"
 }
