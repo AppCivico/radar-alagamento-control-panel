@@ -1,8 +1,12 @@
 import React from 'react'
 import chaiEnzyme from 'chai-enzyme'
 import { shallow } from 'enzyme'
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import Menu from '../app/containers/menu';
+
+configure({ adapter: new Adapter() });
 
 // HACK: chai-enzyme does not play nice with chai-jquery, so remove the
 // problem-causing assertions that collide with chai-jquery
