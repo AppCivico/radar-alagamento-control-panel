@@ -398,6 +398,7 @@ rules:
         font-size:
           - 'em'
           - 'rem'
+          - 'px'
         height:
           - 'em'
           - 'rem'
