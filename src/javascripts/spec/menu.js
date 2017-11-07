@@ -1,8 +1,8 @@
 import React from 'react'
 import chaiEnzyme from 'chai-enzyme'
+import Adapter from 'enzyme-adapter-react-16';
 import { shallow } from 'enzyme'
 import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 
 import Menu from '../app/containers/menu';
 
@@ -14,19 +14,11 @@ configure({ adapter: new Adapter() });
   Object.defineProperty(chai.Assertion.prototype, selector, { get: () => {} })
 })
 
-// Cypress automatically exposes the 'chai'
-// global to all spec files. This enables us
-// to extend chai with enzyme specific assertions
-// for this one spec file.
-//
-// Alternatively we could move this configuration
-// into cypress/support/assertions to enable all
-// spec files to use these chai-enzyme assertions
 chai.use(chaiEnzyme())
 
-describe('Unit Test React with Enzyme', function(){
+describe('Menu component', function(){
   context('<Menu />', function(){
-    it('displays default greeting', function(){
+    it('renders correctly', function(){
       const component = shallow(<Menu />)
       expect(component.find('span')).to.have.text('Notificações')
     });
