@@ -24,7 +24,7 @@ describe('Menu component', () => {
     });
 
     it('change routes', () => {
-    	cy.visit('http://localhost:3000');
+    	cy.visit('');
     	cy.contains('Notificações').click();
     	cy.url().should('include', '/notifications');
     });
