@@ -2,6 +2,7 @@
   "extends": "react-app",
   "globals": {
     "chai": true,
-    "context": true
+    "context": true,
+    "cy": true
 	}
 }
