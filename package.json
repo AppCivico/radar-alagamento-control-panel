@@ -26,7 +26,7 @@
     "lint": "npm-run-all --parallel lint:es lint:sass",
     "prebuild": "npm test && npm run lint",
     "start": "npm-run-all -p watch:css build:js",
-    "test": "BROWSER=none npm run start & npm run cypress:run",
+    "test": "BROWSER=none PORT=9000 npm run start & npm run cypress:run",
     "watch:css": "npm run build:css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/stylesheets/ -o src/ --watch --recursive"
   },
   "devDependencies": {

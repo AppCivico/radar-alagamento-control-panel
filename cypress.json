@@ -1,6 +1,6 @@
 {
   "projectId": "akfhqx",
-  "baseUrl": "http://localhost:3000",
+  "baseUrl": "http://localhost:9000",
   "reporter": "junit",
   "reporterOptions": {
     "mochaFile": "./test-reports/cypress.xml",
