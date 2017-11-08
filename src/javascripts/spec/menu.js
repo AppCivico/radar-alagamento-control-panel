@@ -16,9 +16,9 @@ configure({ adapter: new Adapter() });
 
 chai.use(chaiEnzyme())
 
-describe('Menu component', function(){
-  context('<Menu />', function(){
-    it('renders correctly', function(){
+describe('Menu component', () => {
+  context('<Menu />', () => {
+    it('renders correctly', () => {
       const component = shallow(<Menu />)
       expect(component.find('span')).to.have.text('Notificações')
     });
