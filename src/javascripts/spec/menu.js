@@ -22,5 +22,11 @@ describe('Menu component', () => {
       const component = shallow(<Menu />)
       expect(component.find('span')).to.have.text('Notificações')
     });
+
+    it('change routes', () => {
+    	cy.visit('http://localhost:3000');
+    	cy.contains('Notificações').click();
+    	cy.url().should('include', '/notifications');
+    });
   })
 })
