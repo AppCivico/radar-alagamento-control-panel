@@ -9,10 +9,12 @@ class Notifications extends React.Component {
 		super(props);
 		this.state = {
 			notifications: [],
+			modal: false,
 		};
 
 		// This binding is necessary to make `this` work in the callback
 		this.loadNotifications = this.loadNotifications.bind(this);
+		this.toggleModal = this.toggleModal.bind(this);
 	}
 
 	loadNotifications() {
@@ -22,6 +24,10 @@ class Notifications extends React.Component {
 			// set state
 			this.setState({notifications: response});
 		});
+	}
+
+	toggleModal(e) {
+		this.setState({modal: e});
 	}
 
 	componentDidMount() {
@@ -60,7 +66,11 @@ class Notifications extends React.Component {
 								</tr>
 				      ) : (
 				        this.state.notifications.map((notification) => {
-									return <Notification key={notification.id} notification={notification}></Notification>
+									return <Notification
+										key={notification.id}
+										notification={notification}
+										toggleModal={this.toggleModal}>
+										</Notification>
 								})
 				      )}
 						</tbody></table>
@@ -69,7 +79,7 @@ class Notifications extends React.Component {
 						<Pagination></Pagination>
 					</div>
 				</div>
-				<Alert></Alert>
+				<Alert isOpen={this.state.modal}></Alert>
 			</div>
 		)
 	}

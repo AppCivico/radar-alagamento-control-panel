@@ -3,7 +3,7 @@ import React from 'react';
 class Alert extends React.Component {
 	render() {
 		return (
-			<div className="modal fade in" id="alert">
+			<div className={`modal fade in ${this.props.isOpen ? 'open' : ''}`} id="alert">
 				<div className="modal-dialog">
 					<div className="modal-content">
 						<div className="modal-header">
