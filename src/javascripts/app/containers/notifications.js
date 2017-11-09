@@ -79,7 +79,7 @@ class Notifications extends React.Component {
 						<Pagination></Pagination>
 					</div>
 				</div>
-				<Alert isOpen={this.state.modal}></Alert>
+				<Alert isOpen={this.state.modal} toggleModal={this.toggleModal}></Alert>
 			</div>
 		)
 	}

@@ -7,7 +7,7 @@ class Alert extends React.Component {
 				<div className="modal-dialog">
 					<div className="modal-content">
 						<div className="modal-header">
-							<button type="button" className="close" data-dismiss="modal" aria-label="Cancelar">
+							<button type="button" className="close" aria-label="Cancelar" onClick={() => this.props.toggleModal(false)}>
 								<span aria-hidden="true">×</span>
 							</button>
 							<h4 className="modal-title">Criar alerta</h4>
@@ -18,7 +18,7 @@ class Alert extends React.Component {
 							</div>
 						</div>
 						<div className="modal-footer">
-							<button type="button" className="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+							<button type="button" className="btn btn-default pull-left" onClick={() => this.props.toggleModal(false)}>Cancelar</button>
 							<button type="button" className="btn btn-primary">Enviar</button>
 						</div>
 					</div>
