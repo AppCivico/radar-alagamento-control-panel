@@ -2,6 +2,7 @@ import React from 'react';
 import Notification from '../components/notification';
 import SearchBox from '../components/searchBox';
 import Pagination from '../components/pagination';
+import Alert from '../components/alert';
 
 class Notifications extends React.Component {
 	constructor(props) {
@@ -68,6 +69,7 @@ class Notifications extends React.Component {
 						<Pagination></Pagination>
 					</div>
 				</div>
+				<Alert></Alert>
 			</div>
 		)
 	}
