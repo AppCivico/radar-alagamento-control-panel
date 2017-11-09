@@ -26,6 +26,7 @@ class Notifications extends React.Component {
 	}
 
 	render() {
+		const hasNotifications = this.state.notifications.length < 1;
 		return (
 			<div className="col-xs-12">
 				<div className="box">
@@ -46,16 +47,21 @@ class Notifications extends React.Component {
 						<table className="table table-hover">
 							<tbody><tr>
 								<th>ID</th>
-								<th>User</th>
+								<th>Title</th>
 								<th>Date</th>
 								<th>Status</th>
-								<th>Reason</th>
+								<th>Descrição</th>
+								<th></th>
 							</tr>
-							{
-								this.state.notifications.map((notification) => {
+							{hasNotifications ? (
+				        <tr>
+									<td colspan="6">Nenhuma notificação localizada</td>
+								</tr>
+				      ) : (
+				        this.state.notifications.map((notification) => {
 									return <Notification key={notification.id} notification={notification}></Notification>
 								})
-							}
+				      )}
 						</tbody></table>
 					</div>
 					<div className="box-footer clearfix">
