@@ -1,4 +1,5 @@
 import React from 'react';
+import userDefault from '../../../images/user-default.png';
 
 class Header extends React.Component {
 	constructor(props) {
@@ -37,12 +38,12 @@ class Header extends React.Component {
 							<li className={`dropdown user user-menu ${this.state.isToggleOn ? 'open' : ''}`} onClick={this.dropdownClick}>{
 								// eslint-disable-next-line jsx-a11y/href-no-hash
 								}<a href="#" className="dropdown-toggle" data-toggle="dropdown">
-
+										<img src={userDefault} className="user-image" alt="User Avatar" />
 									<span className="hidden-xs">User</span>
 								</a>
 								<ul className="dropdown-menu">
 									<li className="user-header">
-
+										<img src={userDefault} className="user-image" alt="User Avatar" />
 										<p>
 											User
 											<small>E-mail</small>
