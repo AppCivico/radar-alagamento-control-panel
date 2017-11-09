@@ -1,5 +1,7 @@
 import React from 'react';
 import Notification from '../components/notification';
+import SearchBox from '../components/searchBox';
+import Pagination from '../components/pagination';
 
 class Notifications extends React.Component {
 	constructor(props) {
@@ -34,13 +36,7 @@ class Notifications extends React.Component {
 						<h3 className="box-title">Notificações</h3>
 
 						<div className="box-tools">
-							<div className="input-group input-group-sm notifications-search">
-								<input type="text" name="table_search" className="form-control pull-right" placeholder="Search" />
-
-								<div className="input-group-btn">
-									<button type="submit" className="btn btn-default"><i className="fa fa-search"></i></button>
-								</div>
-							</div>
+							<SearchBox></SearchBox>
 						</div>
 					</div>
 					<div className="box-body table-responsive no-padding">
@@ -69,13 +65,7 @@ class Notifications extends React.Component {
 						</tbody></table>
 					</div>
 					<div className="box-footer clearfix">
-						<ul className="pagination pagination-sm no-margin pull-right">
-							<li><a href="0">«</a></li>
-							<li><a href="1">1</a></li>
-							<li><a href="2">2</a></li>
-							<li><a href="3">3</a></li>
-							<li><a href="4">»</a></li>
-						</ul>
+						<Pagination></Pagination>
 					</div>
 				</div>
 			</div>
