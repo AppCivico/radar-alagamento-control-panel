@@ -51,7 +51,7 @@ class Notifications extends React.Component {
 							</tr>
 							{hasNotifications ? (
 				        <tr>
-									<td colspan="6">
+									<td colSpan="6">
 										<div className="callout callout-info">
 			                <p>Nenhuma notificação localizada</p>
 			              </div>
