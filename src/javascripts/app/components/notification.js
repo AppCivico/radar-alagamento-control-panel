@@ -14,7 +14,7 @@ class Notification extends React.Component {
 		const notification = this.props.notification;
 
 		return (
-			<tr>
+			<tr className="notification">
 				<td>{notification.id}</td>
 				<td>{notification.title}</td>
 				<td>{notification.date}</td>
