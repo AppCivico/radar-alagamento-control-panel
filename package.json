@@ -25,14 +25,14 @@
     "lint:sass": "sass-lint -c .sass-lint.yml 'src/stylesheets/**/*.scss' -v -q -i 'src/stylesheets/vendor/**/*.scss' --verbose --no-exit --format junit --output ./test-reports/sass-lint.xml",
     "lint": "npm-run-all --parallel lint:es lint:sass",
     "prebuild": "npm test && npm run lint",
-    "start": "npm-run-all -p watch:css build:js",
-    "test": "BROWSER=none PORT=9000 npm run start & npm run cypress:run",
+    "start": "PORT=9000 npm-run-all -p watch:css build:js",
+    "test": "BROWSER=none npm run start & npm run cypress:run",
     "watch:css": "npm run build:css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/stylesheets/ -o src/ --watch --recursive"
   },
   "devDependencies": {
     "bootstrap-sass": "^3.3.7",
     "chai-enzyme": "^1.0.0-beta.0",
-    "cypress": "^1.0.2",
+    "cypress": "^1.0.3",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.2",
     "font-awesome": "^4.7.0",
