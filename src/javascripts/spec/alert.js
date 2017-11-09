@@ -33,7 +33,7 @@ describe('<Alert />', () => {
 	context('e2e', () => {
     it('closes modal', () => {
 			cy.visit('/notifications');
-			cy.get('.btn-group button:first').click();
+			cy.get('.notification:first .btn-danger').click();
 			cy.get('.close').click();
 			cy.get('#alert').should('not.have.class', 'open')
 		});
