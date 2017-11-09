@@ -55,7 +55,11 @@ class Notifications extends React.Component {
 							</tr>
 							{hasNotifications ? (
 				        <tr>
-									<td colspan="6">Nenhuma notificação localizada</td>
+									<td colspan="6">
+										<div className="callout callout-info">
+			                <p>Nenhuma notificação localizada</p>
+			              </div>
+									</td>
 								</tr>
 				      ) : (
 				        this.state.notifications.map((notification) => {
