@@ -34,8 +34,12 @@ describe('<Notification />', () => {
 	context('e2e', () => {
     it('open modal', () => {
 			cy.visit('/notifications');
-			cy.get('.notification:first .btn-danger').click();
-			cy.get('#alert').should('have.class', 'open')
+			cy.get('body').then(($body) => {
+		    if ($body.find('.notification:first .btn-danger').length) {
+		      cy.get('.notification:first .btn-danger').click();
+					cy.get('#alert').should('have.class', 'open');
+		    }
+		  });
 		});
 	});
 })
