@@ -8,9 +8,9 @@ class Menu extends React.Component {
 				<section className="sidebar">
 					<ul className="sidebar-menu" data-widget="tree">
 							<li className="treeview">
-								<Link to="/notifications">
+								<Link to="/alerts">
 									<i className="fa fa-hand-o-right"></i>
-									<span>Notificações</span>
+									<span>Alertas</span>
 								</Link>
 							</li>
 					</ul>

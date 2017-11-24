@@ -7,7 +7,7 @@ import {
 
 import Header from './containers/header';
 import Menu from './containers/menu';
-import Notifications from './containers/notifications';
+import Alerts from './containers/alerts';
 import NotFound from './containers/notFound';
 
 class App extends Component {
@@ -21,7 +21,7 @@ class App extends Component {
 						<div className="content">
 							<div className="row">
 							 	<Switch>
-									<Route path="/notifications" component={Notifications}/>
+									<Route path="/alerts" component={Alerts}/>
 									<Route component={NotFound}/>
 								</Switch>
 							</div>
