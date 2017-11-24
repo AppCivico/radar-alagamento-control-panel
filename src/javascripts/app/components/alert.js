@@ -1,31 +1,52 @@
-import React from 'react';
+import React from "react";
 
 class Alert extends React.Component {
-	render() {
-		return (
-			<div className={`modal fade in ${this.props.isOpen ? 'open' : ''}`} id="alert">
-				<div className="modal-dialog">
-					<div className="modal-content">
-						<div className="modal-header">
-							<button type="button" className="close" aria-label="Cancelar" onClick={() => this.props.toggleModal(false)}>
-								<span aria-hidden="true">×</span>
-							</button>
-							<h4 className="modal-title">Criar alerta</h4>
-						</div>
-						<div className="modal-body">
-							<div className="form-group">
-								<label>wefwef</label>
-							</div>
-						</div>
-						<div className="modal-footer">
-							<button type="button" className="btn btn-default pull-left" onClick={() => this.props.toggleModal(false)}>Cancelar</button>
-							<button type="button" className="btn btn-primary">Enviar</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		)
-	}
+  constructor() {
+    super();
+    this.createAlert = this.createAlert.bind(this);
+  }
+
+  createAlert() {
+    this.props.toggleModal(true);
+  }
+
+  formatDate(date) {
+    if (date)
+      return date
+        .split(" ")[0]
+        .split("-")
+        .reverse()
+        .join("/");
+  }
+
+  render() {
+    const alert = this.props.alert;
+
+    return (
+      <tr className="alert">
+        <td>{alert.id}</td>
+        <td>{alert.name}</td>
+        <td>{this.formatDate(alert.created_at)}</td>
+        <td>{alert.source_id}</td>
+        <td>{alert.type}</td>
+        <td>{alert.description}</td>
+        <td>
+          <div className="btn-group pull-right">
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={() => this.createAlert()}
+            >
+              Criar notificação
+            </button>
+            <button type="button" className="btn btn-info">
+              Ignorar
+            </button>
+          </div>
+        </td>
+      </tr>
+    );
+  }
 }
 
 export default Alert;

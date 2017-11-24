@@ -4,20 +4,20 @@ import SearchBox from "../components/searchBox";
 import Pagination from "../components/pagination";
 import Alert from "../components/alert";
 
-class Notifications extends React.Component {
+class Alerts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      notifications: [],
+      alerts: [],
       modal: false
     };
 
     // This binding is necessary to make `this` work in the callback
-    this.loadNotifications = this.loadNotifications.bind(this);
+    this.loadAlerts = this.loadAlerts.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
   }
 
-  loadNotifications() {
+  loadAlerts() {
     fetch(
       "https://dtupa.eokoe.com/sensor?api_key=f17a9b9d-221a-47c0-9628-07b3a0fd1a59"
     )
@@ -26,7 +26,7 @@ class Notifications extends React.Component {
       })
       .then(response => {
         // set state
-        this.setState({ notifications: response.results });
+        this.setState({ alerts: response.results });
       });
   }
 
@@ -35,16 +35,16 @@ class Notifications extends React.Component {
   }
 
   componentDidMount() {
-    this.loadNotifications();
+    this.loadAlerts();
   }
 
   render() {
-    const hasNotifications = this.state.notifications.length < 1;
+    const hasAlerts = this.state.alerts.length < 1;
     return (
       <div className="col-xs-12">
         <div className="box">
           <div className="box-header">
-            <h3 className="box-title">Notificações</h3>
+            <h3 className="box-title">Alertas</h3>
 
             <div className="box-tools">
               <SearchBox />
@@ -62,20 +62,20 @@ class Notifications extends React.Component {
                   <th>Descrição</th>
                   <th />
                 </tr>
-                {hasNotifications ? (
+                {hasAlerts ? (
                   <tr>
                     <td colSpan="6">
                       <div className="callout callout-info">
-                        <p>Nenhuma notificação localizada</p>
+                        <p>Nenhum alerta localizado</p>
                       </div>
                     </td>
                   </tr>
                 ) : (
-                  this.state.notifications.map(notification => {
+                  this.state.alerts.map(alert => {
                     return (
-                      <Notification
-                        key={notification.id}
-                        notification={notification}
+                      <Alert
+                        key={alert.id}
+                        alert={alert}
                         toggleModal={this.toggleModal}
                       />
                     );
@@ -88,10 +88,13 @@ class Notifications extends React.Component {
             <Pagination />
           </div>
         </div>
-        <Alert isOpen={this.state.modal} toggleModal={this.toggleModal} />
+        <Notification
+          isOpen={this.state.modal}
+          toggleModal={this.toggleModal}
+        />
       </div>
     );
   }
 }
 
-export default Notifications;
+export default Alerts;
