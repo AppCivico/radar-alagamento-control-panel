@@ -18,26 +18,28 @@ chai.use(chaiEnzyme())
 describe('<Alert />', () => {
   context('Unit Testing', () => {
     it('renders correctly', () => {
-      const component = shallow(<Alert />)
-      expect(component.find('.modal-title')).to.have.text('Criar alerta')
-    });
-
-    it('show message if Alert are empty', () => {
-    	const component = shallow(<Alert />);
-      if (component.props().isOpen) {
-      	expect(component.find('#alert')).to.have.class('open')
+      const alert = {
+      	created_at: "2017-11-24 20:43:10.67918",
+				source_id: 1,
+				location: "0101000020E61000000F01D1DDBF6347C0E5F7EC6FBF9237C0",
+				name: "1000946",
+				type: "0 PLU(mm)",
+				id: 1,
+				description: "Córrego Itaim  - Rua Joaquim L. Veiga"
       }
+      const component = shallow(<Alert alert=""/>);
+      component.setProps({ alert });
+      expect(component.find('.btn-group .btn-danger')).to.have.text('Criar notificação')
     });
 	});
 
 	context('e2e', () => {
-    it('closes modal', () => {
-			cy.visit('/notifications');
+    it('open modal', () => {
+			cy.visit('/alerts');
 			cy.get('body').then(($body) => {
-		    if ($body.find('.notification:first .btn-danger').length) {
-		      cy.get('.notification:first .btn-danger').click();
-		      cy.get('.close').click();
-					cy.get('#alert').should('not.have.class', 'open');
+		    if ($body.find('.alert:first .btn-danger').length) {
+		      cy.get('.alert:first .btn-danger').click();
+					cy.get('#alert').should('have.class', 'open');
 		    }
 		  });
 		});

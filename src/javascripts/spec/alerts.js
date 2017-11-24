@@ -3,7 +3,7 @@ import chaiEnzyme from 'chai-enzyme'
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, configure } from 'enzyme';
 
-import Notifications from '../app/containers/notifications';
+import Alerts from '../app/containers/alerts';
 
 configure({ adapter: new Adapter() });
 
@@ -15,17 +15,17 @@ configure({ adapter: new Adapter() });
 
 chai.use(chaiEnzyme())
 
-describe('<Notifications />', () => {
+describe('<Alerts />', () => {
   context('Unit Testing', () => {
     it('renders correctly', () => {
-      const component = shallow(<Notifications />)
-      expect(component.find('.box-title')).to.have.text('Notificações')
+      const component = shallow(<Alerts />)
+      expect(component.find('.box-title')).to.have.text('Alertas')
     });
 
-    it('show message if notifications are empty', () => {
-    	const component = shallow(<Notifications />);
-      if (component.state().notifications.length < 1) {
-      	expect(component.find('.callout-info p')).to.have.text('Nenhuma notificação localizada')
+    it('show message if alerts are empty', () => {
+    	const component = shallow(<Alerts />);
+      if (component.state().alerts.length < 1) {
+      	expect(component.find('.callout-info p')).to.have.text('Nenhum alerta localizado')
       }
     });
 	});
