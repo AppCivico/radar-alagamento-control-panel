@@ -9,12 +9,14 @@ class Alerts extends React.Component {
     super(props);
     this.state = {
       alerts: [],
-      modal: false
+      modal: false,
+      selectedAlert: {}
     };
 
     // This binding is necessary to make `this` work in the callback
     this.loadAlerts = this.loadAlerts.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.changeSelectedAlert = this.changeSelectedAlert.bind(this);
   }
 
   loadAlerts() {
@@ -32,6 +34,10 @@ class Alerts extends React.Component {
 
   toggleModal(e) {
     this.setState({ modal: e });
+  }
+
+  changeSelectedAlert(alert) {
+    this.setState({ selectedAlert: alert });
   }
 
   componentDidMount() {
@@ -77,6 +83,7 @@ class Alerts extends React.Component {
                         key={alert.id}
                         alert={alert}
                         toggleModal={this.toggleModal}
+                        changeSelectedAlert={this.changeSelectedAlert}
                       />
                     );
                   })
@@ -91,6 +98,7 @@ class Alerts extends React.Component {
         <Notification
           isOpen={this.state.modal}
           toggleModal={this.toggleModal}
+          alert={this.state.selectedAlert}
         />
       </div>
     );
