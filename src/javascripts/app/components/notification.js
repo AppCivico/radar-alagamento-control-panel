@@ -26,7 +26,10 @@ class Notification extends React.Component {
 		return '';
 	}
 
-	sendNotification() {
+	sendNotification(e) {
+		e.preventDefault();
+
+		console.log(this.refs);
 		console.log(this.state.notification);
 	}
 
@@ -53,7 +56,7 @@ class Notification extends React.Component {
 								<strong>Criar notificação</strong>
 							</h4>
 						</div>
-						<form>
+						<form onSubmit={e => this.sendNotification(e)}>
 							<div className="modal-body">
 								<div className="form-group">
 									<h4>Dados do alerta selecionado:</h4>
@@ -83,13 +86,14 @@ class Notification extends React.Component {
 										<input
 											type="text"
 											name="description"
+											ref="description"
 											className="form-control"
 											placeholder="Exemplo: Transbordamento de córrego"
 										/>
 									</div>
 									<div className="form-group">
 										<label htmlFor="level">Select</label>
-										<select name="level" className="form-control">
+										<select name="level" ref="level"  className="form-control">
 											{Object.keys(this.state.levels).map(item => this.renderOptions(item))}
 										</select>
 									</div>
@@ -103,7 +107,7 @@ class Notification extends React.Component {
 								>
 									Cancelar
 								</button>
-								<button type="button" className="btn btn-primary">
+								<button type="submit" className="btn btn-primary">
 									Enviar
 								</button>
 							</div>
