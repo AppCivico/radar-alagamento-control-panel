@@ -14,8 +14,9 @@ class Notification extends React.Component {
 				emergency: 'Emergência',
 				overflow: 'Enchente',
 			},
-			notification: {},
 		};
+
+		this.sendNotification = this.sendNotification.bind(this);
 	}
 
 	sourceName(source) {
@@ -29,12 +30,19 @@ class Notification extends React.Component {
 	sendNotification(e) {
 		e.preventDefault();
 
-		console.log(this.refs);
-		console.log(this.state.notification);
+		const notification = {
+			sensor_sample_id: this.props.alert.id,
+			description: this.description.value,
+			level: this.level.value,
+		};
+
+		console.log(notification);
+
+		this.newNotification.reset();
 	}
 
 	renderOptions(item) {
-		return <option key={item}>{this.state.levels[item]}</option>;
+		return <option key={item} value={item}>{this.state.levels[item]}</option>;
 	}
 
 	render() {
@@ -56,7 +64,10 @@ class Notification extends React.Component {
 								<strong>Criar notificação</strong>
 							</h4>
 						</div>
-						<form onSubmit={e => this.sendNotification(e)}>
+						<form
+							onSubmit={e => this.sendNotification(e)}
+							ref={(input) => { this.newNotification = input; }}
+						>
 							<div className="modal-body">
 								<div className="form-group">
 									<h4>Dados do alerta selecionado:</h4>
@@ -86,14 +97,14 @@ class Notification extends React.Component {
 										<input
 											type="text"
 											name="description"
-											ref="description"
+											ref={(input) => { this.description = input; }}
 											className="form-control"
 											placeholder="Exemplo: Transbordamento de córrego"
 										/>
 									</div>
 									<div className="form-group">
 										<label htmlFor="level">Select</label>
-										<select name="level" ref="level"  className="form-control">
+										<select name="level" ref={(input) => { this.level = input; }} className="form-control">
 											{Object.keys(this.state.levels).map(item => this.renderOptions(item))}
 										</select>
 									</div>
