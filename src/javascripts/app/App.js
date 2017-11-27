@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
 	BrowserRouter as Router,
 	Route,
@@ -10,27 +10,23 @@ import Menu from './containers/menu';
 import Alerts from './containers/alerts';
 import NotFound from './containers/notFound';
 
-class App extends Component {
-	render() {
-		return (
-			<Router>
-				<div className="wrapper">
-					<Header></Header>
-					<Menu></Menu>
-					<div className="content-wrapper">
-						<div className="content">
-							<div className="row">
-							 	<Switch>
-									<Route path="/alerts" component={Alerts}/>
-									<Route component={NotFound}/>
-								</Switch>
-							</div>
-						</div>
+const App = () => (
+	<Router>
+		<div className="wrapper">
+			<Header />
+			<Menu />
+			<div className="content-wrapper">
+				<div className="content">
+					<div className="row">
+						<Switch>
+							<Route path="/alerts" component={Alerts} />
+							<Route component={NotFound} />
+						</Switch>
 					</div>
 				</div>
-			</Router>
-		);
-	}
-}
+			</div>
+		</div>
+	</Router>
+);
 
 export default App;
