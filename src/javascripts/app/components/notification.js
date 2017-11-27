@@ -8,12 +8,30 @@ class Notification extends React.Component {
 		super();
 
 		this.state = {
+			levels: {
+				attention: 'Atenção',
+				alert: 'Alerta',
+				emergency: 'Emergência',
+				overflow: 'Enchente',
+			},
 			notification: {},
 		};
 	}
 
+	sourceName(source) {
+		if (source) {
+			return source.name;
+		}
+
+		return '';
+	}
+
 	sendNotification() {
 		console.log(this.state.notification);
+	}
+
+	renderOptions(item) {
+		return <option key={item}>{this.state.levels[item]}</option>;
 	}
 
 	render() {
@@ -31,35 +49,65 @@ class Notification extends React.Component {
 							>
 								<span aria-hidden="true">×</span>
 							</button>
-							<h4 className="modal-title">Criar notificação</h4>
+							<h4 className="modal-title">
+								<strong>Criar notificação</strong>
+							</h4>
 						</div>
-						<div className="modal-body">
-							<div className="form-group">
-								{alert.id}
-								<br />
-								{alert.name}
-								<br />
-								{formatDate(alert.created_at)}
-								<br />
-								<br />
-								{alert.type}
-								<br />
-								{alert.description}
-								<br />
+						<form>
+							<div className="modal-body">
+								<div className="form-group">
+									<h4>Dados do alerta selecionado:</h4>
+									<p>
+										<strong>ID: </strong>
+										{alert.id}
+										<br />
+										<strong>Título: </strong>
+										{alert.name}
+										<br />
+										<strong>Data: </strong>
+										{formatDate(alert.created_at)}
+										<br />
+										<strong>Fonte: </strong>
+										{this.sourceName(alert.source)}
+										<br />
+										<strong>Tipo: </strong>
+										{alert.type}
+										<br />
+										<strong>Descrição: </strong>
+										{alert.description}
+									</p>
+									<hr />
+									<h4>Notificação:</h4>
+									<div className="form-group">
+										<label htmlFor="description">Descrição</label>
+										<input
+											type="text"
+											name="description"
+											className="form-control"
+											placeholder="Exemplo: Transbordamento de córrego"
+										/>
+									</div>
+									<div className="form-group">
+										<label htmlFor="level">Select</label>
+										<select name="level" className="form-control">
+											{Object.keys(this.state.levels).map(item => this.renderOptions(item))}
+										</select>
+									</div>
+								</div>
 							</div>
-						</div>
-						<div className="modal-footer">
-							<button
-								type="button"
-								className="btn btn-default pull-left"
-								onClick={() => this.props.toggleModal(false)}
-							>
-								Cancelar
-							</button>
-							<button type="button" className="btn btn-primary">
-								Enviar
-							</button>
-						</div>
+							<div className="modal-footer">
+								<button
+									type="button"
+									className="btn btn-default pull-left"
+									onClick={() => this.props.toggleModal(false)}
+								>
+									Cancelar
+								</button>
+								<button type="button" className="btn btn-primary">
+									Enviar
+								</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
