@@ -10,7 +10,7 @@ class SearchBox extends React.Component {
 					<button type="submit" className="btn btn-default"><i className="fa fa-search"></i></button>
 				</div>
 			</div>
-		)
+		);
 	}
 }
 

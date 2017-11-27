@@ -10,7 +10,7 @@ class Pagination extends React.Component {
 				<li><a href="3">3</a></li>
 				<li><a href="4">»</a></li>
 			</ul>
-		)
+		);
 	}
 }
 
