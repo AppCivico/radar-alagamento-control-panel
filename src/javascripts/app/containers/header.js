@@ -16,13 +16,15 @@ class Header extends React.Component {
 		this.dropdownClick = this.dropdownClick.bind(this);
 	}
 
-	dropdownClick() {
+	dropdownClick(e) {
+		e.preventDefault();
 		this.setState(prevState => ({
 			isToggleOn: !prevState.isToggleOn,
 		}));
 	}
 
-	sidebarToggle() {
+	sidebarToggle(e) {
+		e.preventDefault();
 		document.body.classList.toggle('sidebar-collapse');
 	}
 
@@ -34,14 +36,14 @@ class Header extends React.Component {
 					<span className="logo-lg">Radar do <strong>Alagamento</strong></span>
 				</a>
 				<nav className="navbar navbar-static-top">
-					<a href="#" className="sidebar-toggle" data-toggle="push-menu" role="button" onClick={this.sidebarToggle}>
+					<a href="/" className="sidebar-toggle" data-toggle="push-menu" role="button" onClick={e => this.sidebarToggle(e)}>
 						<span className="sr-only">toggle</span>
 					</a>
 
 					<div className="navbar-custom-menu">
 						<ul className="nav navbar-nav">
-							<li className={`dropdown user user-menu ${this.state.isToggleOn ? 'open' : ''}`} onClick={this.dropdownClick}>
-								<a href="#" className="dropdown-toggle" data-toggle="dropdown">
+							<li className={`dropdown user user-menu ${this.state.isToggleOn ? 'open' : ''}`} onClick={e => this.dropdownClick(e)}>
+								<a href="/" className="dropdown-toggle" data-toggle="dropdown">
 									<img src={userDefault} className="user-image" alt="User Avatar" />
 									<span className="hidden-xs">User</span>
 								</a>
@@ -55,7 +57,7 @@ class Header extends React.Component {
 									</li>
 									<li className="user-footer">
 										<div className="pull-right">
-											<a href="#" className="btn btn-default btn-flat">Sair</a>
+											<a href="/" className="btn btn-default btn-flat">Sair</a>
 										</div>
 									</li>
 								</ul>
