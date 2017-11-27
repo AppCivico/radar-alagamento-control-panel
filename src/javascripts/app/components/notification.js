@@ -19,7 +19,7 @@ class Notification extends React.Component {
 	render() {
 		const { alert } = this.props;
 		return (
-			<div className={`modal fade in ${this.props.isOpen ? 'open' : ''}`} id="alert">
+			<div className={`modal fade in ${this.props.isOpen ? 'open' : ''}`} id="notification">
 				<div className="modal-dialog">
 					<div className="modal-content">
 						<div className="modal-header">
