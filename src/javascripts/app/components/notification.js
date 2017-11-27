@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { formatDate } from '../../utils';
+import { formatDate, validate } from '../../utils';
 
 class Notification extends React.Component {
 	constructor() {
@@ -13,6 +13,10 @@ class Notification extends React.Component {
 				alert: 'Alerta',
 				emergency: 'Emergência',
 				overflow: 'Enchente',
+			},
+			validation: {
+				status: false,
+				errors: {},
 			},
 		};
 
@@ -30,15 +34,32 @@ class Notification extends React.Component {
 	sendNotification(e) {
 		e.preventDefault();
 
-		const notification = {
+		const body = {
 			sensor_sample_id: this.props.alert.id,
 			description: this.description.value,
 			level: this.level.value,
 		};
 
-		console.log(notification);
+		const validation = validate(body);
+		this.setState({ validation });
 
-		this.newNotification.reset();
+		if (validation.status) {
+			fetch(
+				'https://dtupa.eokoe.com/admin/alert?api_key=f17a9b9d-221a-47c0-9628-07b3a0fd1a59',
+				{
+					method: 'POST',
+					headers: {
+						Accept: 'application/json',
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(body),
+				},
+			).then(() => {
+				this.newNotification.reset();
+			}).catch((err) => {
+				console.error(err);
+			});
+		}
 	}
 
 	renderOptions(item) {
@@ -92,7 +113,7 @@ class Notification extends React.Component {
 									</p>
 									<hr />
 									<h4>Notificação:</h4>
-									<div className="form-group">
+									<div className={`form-group ${this.state.validation.errors.description ? 'has-error' : ''}`}>
 										<label htmlFor="description">Descrição</label>
 										<input
 											type="text"
@@ -101,12 +122,14 @@ class Notification extends React.Component {
 											className="form-control"
 											placeholder="Exemplo: Transbordamento de córrego"
 										/>
+										<span className="help-block">{this.state.validation.errors.description}</span>
 									</div>
-									<div className="form-group">
+									<div className={`form-group ${this.state.validation.errors.level ? 'has-error' : ''}`}>
 										<label htmlFor="level">Select</label>
 										<select name="level" ref={(input) => { this.level = input; }} className="form-control">
 											{Object.keys(this.state.levels).map(item => this.renderOptions(item))}
 										</select>
+										<span className="help-block">{this.state.validation.errors.level}</span>
 									</div>
 								</div>
 							</div>
