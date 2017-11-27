@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { formatDate } from '../../utils';
 
@@ -26,11 +27,7 @@ class Alert extends React.Component {
 				<td>{alert.description}</td>
 				<td>
 					<div className="btn-group pull-right">
-						<button
-							type="button"
-							className="btn btn-danger"
-							onClick={() => this.createAlert()}
-						>
+						<button type="button" className="btn btn-danger" onClick={() => this.createAlert()}>
 							Criar notificação
 						</button>
 						<button type="button" className="btn btn-info">
@@ -42,5 +39,11 @@ class Alert extends React.Component {
 		);
 	}
 }
+
+Alert.propTypes = {
+	changeSelectedAlert: PropTypes.func.isRequired,
+	toggleModal: PropTypes.func.isRequired,
+	alert: PropTypes.objectOf(PropTypes.string).isRequired,
+};
 
 export default Alert;

@@ -1,14 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { formatDate } from '../../utils';
 
 const Notification = (props) => {
 	const alert = props.alert;
 	return (
-		<div
-			className={`modal fade in ${props.isOpen ? 'open' : ''}`}
-			id="alert"
-		>
+		<div className={`modal fade in ${props.isOpen ? 'open' : ''}`} id="alert">
 			<div className="modal-dialog">
 				<div className="modal-content">
 					<div className="modal-header">
@@ -54,6 +52,12 @@ const Notification = (props) => {
 			</div>
 		</div>
 	);
+};
+
+Notification.propTypes = {
+	isOpen: PropTypes.bool.isRequired,
+	toggleModal: PropTypes.func.isRequired,
+	alert: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default Notification;
