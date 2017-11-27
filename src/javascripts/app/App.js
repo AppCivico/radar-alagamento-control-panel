@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-	BrowserRouter as Router,
-	Route,
-	Switch }
-	from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from './containers/header';
 import Menu from './containers/menu';
@@ -19,6 +15,7 @@ const App = () => (
 				<div className="content">
 					<div className="row">
 						<Switch>
+							<Route path="/" component={Alerts} />
 							<Route path="/alerts" component={Alerts} />
 							<Route component={NotFound} />
 						</Switch>
