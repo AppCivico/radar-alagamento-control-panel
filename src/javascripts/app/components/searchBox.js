@@ -5,7 +5,7 @@ const SearchBox = () => (
 		<input type="text" name="table_search" className="form-control pull-right" placeholder="Search" />
 
 		<div className="input-group-btn">
-			<button type="submit" className="btn btn-default"><i className="fa fa-search"></i></button>
+			<button type="submit" className="btn btn-default"><i className="fa fa-search" /></button>
 		</div>
 	</div>
 );

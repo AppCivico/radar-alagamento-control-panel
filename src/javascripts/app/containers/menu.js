@@ -11,7 +11,7 @@ const Menu = () => (
 			<ul className="sidebar-menu" data-widget="tree">
 				<li className="treeview">
 					<Link to="/alerts">
-						<i className="fa fa-hand-o-right"></i>
+						<i className="fa fa-hand-o-right" />
 						<span>Alertas</span>
 					</Link>
 				</li>
