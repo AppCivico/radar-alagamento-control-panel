@@ -57,7 +57,7 @@ class Notification extends React.Component {
 			).then(() => {
 				this.newNotification.reset();
 			}).catch((err) => {
-				console.error(err);
+				throw new Error(err);
 			});
 		}
 	}
@@ -114,21 +114,23 @@ class Notification extends React.Component {
 									<hr />
 									<h4>Notificação:</h4>
 									<div className={`form-group ${this.state.validation.errors.description ? 'has-error' : ''}`}>
-										<label htmlFor="description">Descrição</label>
-										<input
-											type="text"
-											name="description"
-											ref={(input) => { this.description = input; }}
-											className="form-control"
-											placeholder="Exemplo: Transbordamento de córrego"
-										/>
+										<label htmlFor="description">Descrição
+											<input
+												type="text"
+												name="description"
+												ref={(input) => { this.description = input; }}
+												className="form-control"
+												placeholder="Exemplo: Transbordamento de córrego"
+											/>
+										</label>
 										<span className="help-block">{this.state.validation.errors.description}</span>
 									</div>
 									<div className={`form-group ${this.state.validation.errors.level ? 'has-error' : ''}`}>
-										<label htmlFor="level">Select</label>
-										<select name="level" ref={(input) => { this.level = input; }} className="form-control">
-											{Object.keys(this.state.levels).map(item => this.renderOptions(item))}
-										</select>
+										<label htmlFor="level">Select
+											<select name="level" ref={(input) => { this.level = input; }} className="form-control">
+												{Object.keys(this.state.levels).map(item => this.renderOptions(item))}
+											</select>
+										</label>
 										<span className="help-block">{this.state.validation.errors.level}</span>
 									</div>
 								</div>
