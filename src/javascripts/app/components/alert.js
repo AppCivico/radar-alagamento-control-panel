@@ -9,7 +9,8 @@ class Alert extends React.Component {
 		this.createAlert = this.createAlert.bind(this);
 	}
 
-	createAlert() {
+	createAlert(e) {
+		e.preventDefault();
 		this.props.changeSelectedAlert(this.props.alert);
 		this.props.toggleModal(true);
 	}
@@ -22,12 +23,12 @@ class Alert extends React.Component {
 				<td>{alert.id}</td>
 				<td>{alert.name}</td>
 				<td>{formatDate(alert.created_at)}</td>
-				<td>{alert.source_id}</td>
+				<td>{alert.source.name}</td>
 				<td>{alert.type}</td>
 				<td>{alert.description}</td>
 				<td>
 					<div className="btn-group pull-right">
-						<button type="button" className="btn btn-danger" onClick={() => this.createAlert()}>
+						<button type="button" className="btn btn-danger" onClick={e => this.createAlert(e)}>
 							Criar notificação
 						</button>
 						<button type="button" className="btn btn-info">
@@ -43,7 +44,14 @@ class Alert extends React.Component {
 Alert.propTypes = {
 	changeSelectedAlert: PropTypes.func.isRequired,
 	toggleModal: PropTypes.func.isRequired,
-	alert: PropTypes.objectOf(PropTypes.string).isRequired,
+	alert: PropTypes.objectOf(PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number,
+		PropTypes.objectOf(PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number,
+		])),
+	])).isRequired,
 };
 
 export default Alert;

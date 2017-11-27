@@ -28,7 +28,7 @@ const Notification = (props) => {
 							<br />
 							{formatDate(alert.created_at)}
 							<br />
-							{alert.source_id}
+							{alert.source}
 							<br />
 							{alert.type}
 							<br />
@@ -57,7 +57,14 @@ const Notification = (props) => {
 Notification.propTypes = {
 	isOpen: PropTypes.bool.isRequired,
 	toggleModal: PropTypes.func.isRequired,
-	alert: PropTypes.objectOf(PropTypes.string).isRequired,
+	alert: PropTypes.objectOf(PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number,
+		PropTypes.objectOf(PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number,
+		])),
+	])).isRequired,
 };
 
 export default Notification;
