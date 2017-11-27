@@ -16,8 +16,7 @@ class Alert extends React.Component {
 	}
 
 	render() {
-		const alert = this.props.alert;
-
+		const { alert } = this.props;
 		return (
 			<tr className="alert">
 				<td>{alert.id}</td>
@@ -47,10 +46,7 @@ Alert.propTypes = {
 	alert: PropTypes.objectOf(PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.number,
-		PropTypes.objectOf(PropTypes.oneOfType([
-			PropTypes.string,
-			PropTypes.number,
-		])),
+		PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
 	])).isRequired,
 };
 
