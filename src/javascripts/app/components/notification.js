@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import { formatDate, validate } from '../../utils';
 
@@ -23,6 +24,28 @@ class Notification extends React.Component {
 
 		this.sendNotification = this.sendNotification.bind(this);
 		this.toggleButton = this.toggleButton.bind(this);
+	}
+
+	componentWillMount() {
+		const data = {
+			name: 'Lais',
+			email: 'lais01@eokoe.com',
+			password: 'eokoe0101',
+			password_confirmation: 'eokoe0101',
+			phone_number: '+5511987651122',
+		};
+
+		axios({
+			method: 'POST',
+			url: 'https://dtupa.eokoe.com/admin/signup',
+			headers: { 'Content-Type': 'application/json' },
+			data,
+		})
+			.then((response) => {
+				console.log(response);
+			}, (err) => {
+				console.error(err);
+			});
 	}
 
 	sourceName(source) {
