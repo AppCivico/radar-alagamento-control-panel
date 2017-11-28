@@ -18,9 +18,11 @@ class Notification extends React.Component {
 				status: false,
 				errors: {},
 			},
+			button: true,
 		};
 
 		this.sendNotification = this.sendNotification.bind(this);
+		this.toggleButton = this.toggleButton.bind(this);
 	}
 
 	sourceName(source) {
@@ -33,6 +35,8 @@ class Notification extends React.Component {
 
 	sendNotification(e) {
 		e.preventDefault();
+
+		this.toggleButton();
 
 		const body = {
 			sensor_sample_id: this.props.alert.id,
@@ -56,10 +60,20 @@ class Notification extends React.Component {
 				},
 			).then(() => {
 				this.newNotification.reset();
+				this.toggleButton();
 			}).catch((err) => {
-				throw new Error(err);
+				// eslint-disable-next-line no-console
+				console.error(err);
+				this.toggleButton();
 			});
+		} else {
+			this.toggleButton();
 		}
+	}
+
+	toggleButton() {
+		const button = !this.state.button;
+		this.setState({ button });
 	}
 
 	renderOptions(item) {
@@ -126,7 +140,7 @@ class Notification extends React.Component {
 										<span className="help-block">{this.state.validation.errors.description}</span>
 									</div>
 									<div className={`form-group ${this.state.validation.errors.level ? 'has-error' : ''}`}>
-										<label htmlFor="level">Select
+										<label htmlFor="level">Nível
 											<select name="level" ref={(input) => { this.level = input; }} className="form-control">
 												{Object.keys(this.state.levels).map(item => this.renderOptions(item))}
 											</select>
@@ -143,7 +157,7 @@ class Notification extends React.Component {
 								>
 									Cancelar
 								</button>
-								<button type="submit" className="btn btn-primary">
+								<button type="submit" className="btn btn-primary" disabled={!this.state.button}>
 									Enviar
 								</button>
 							</div>
