@@ -27,12 +27,12 @@ class Notification extends React.Component {
 	}
 
 	componentWillMount() {
-		const data = {
-			name: 'Lais',
-			email: 'lais01@eokoe.com',
-			password: 'eokoe0101',
-			password_confirmation: 'eokoe0101',
-			phone_number: '+5511987651122',
+		/* const data = {
+			name: 'Lais Tomaz',
+			email: 'lais10@eokoe.com',
+			password: 'eokoe123456',
+			password_confirmation: 'eokoe123456',
+			phone_number: '+5511994567845',
 		};
 
 		axios({
@@ -46,6 +46,7 @@ class Notification extends React.Component {
 			}, (err) => {
 				console.error(err);
 			});
+		*/
 	}
 
 	sourceName(source) {

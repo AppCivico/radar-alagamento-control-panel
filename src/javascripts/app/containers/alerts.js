@@ -32,7 +32,7 @@ class Alerts extends React.Component {
 	}
 
 	loadAlerts() {
-		fetch('https://dtupa.eokoe.com/sensor?api_key=f17a9b9d-221a-47c0-9628-07b3a0fd1a59')
+		fetch('https://dtupa.eokoe.com/sensor?api_key=26ddb0de-0a25-4caf-8420-908bf3a1b8e3')
 			.then(response => response.json())
 			.then((response) => {
 				// set state
