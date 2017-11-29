@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+
 import Notification from '../components/notification';
 import SearchBox from '../components/searchBox';
 import Pagination from '../components/pagination';
@@ -11,12 +13,34 @@ class Alerts extends React.Component {
 			alerts: [],
 			modal: false,
 			selectedAlert: {},
+			apiKey: 'b1a8674a-aa98-45b1-9457-c2722bfb74cc',
 		};
 
 		// This binding is necessary to make `this` work in the callback
 		this.loadAlerts = this.loadAlerts.bind(this);
 		this.toggleModal = this.toggleModal.bind(this);
 		this.changeSelectedAlert = this.changeSelectedAlert.bind(this);
+	}
+
+	componentWillMount() {
+		const data = {
+			email: 'email@email.com',
+			password: '123segredo$$',
+		};
+
+		axios({
+			method: 'POST',
+			url: 'https://dtupa.eokoe.com/login',
+			headers: { 'Content-Type': 'application/json' },
+			data,
+		})
+			.then((response) => {
+				const apiKey = response.data.api_key;
+				this.setState({ apiKey });
+				window.sessionStorage.setItem('apiKey', apiKey);
+			}, (err) => {
+				console.error(err);
+			});
 	}
 
 	componentDidMount() {
@@ -32,11 +56,12 @@ class Alerts extends React.Component {
 	}
 
 	loadAlerts() {
-		fetch('https://dtupa.eokoe.com/sensor?api_key=26ddb0de-0a25-4caf-8420-908bf3a1b8e3')
-			.then(response => response.json())
+		axios
+			.get(`https://dtupa.eokoe.com/sensor?api_key=${this.state.apiKey}`)
 			.then((response) => {
-				// set state
-				this.setState({ alerts: response.results });
+				this.setState({ alerts: response.data.results });
+			}, (err) => {
+				console.error(err);
 			});
 	}
 
