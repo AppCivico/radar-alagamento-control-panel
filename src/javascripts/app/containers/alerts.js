@@ -24,8 +24,8 @@ class Alerts extends React.Component {
 
 	componentWillMount() {
 		const data = {
-			email: 'email@email.com',
-			password: '123segredo$$',
+			email: 'lais@eokoe.com',
+			password: 'eokoe0101',
 		};
 
 		axios({
