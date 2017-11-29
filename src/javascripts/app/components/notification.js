@@ -37,7 +37,7 @@ class Notification extends React.Component {
 
 		axios({
 			method: 'POST',
-			url: 'https://dtupa.eokoe.com/admin/signup',
+			url: 'http://dtupa.eokoe.com/openapi/login',
 			headers: { 'Content-Type': 'application/json' },
 			data,
 		})
