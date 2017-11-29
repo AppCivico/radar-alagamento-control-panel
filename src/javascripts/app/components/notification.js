@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import axios from 'axios';
+import axios from 'axios';
 
 import { formatDate, validate } from '../../utils';
 
@@ -26,29 +26,6 @@ class Notification extends React.Component {
 		this.toggleButton = this.toggleButton.bind(this);
 	}
 
-	componentWillMount() {
-		/* const data = {
-			name: 'Lais Tomaz',
-			email: 'lais10@eokoe.com',
-			password: 'eokoe123456',
-			password_confirmation: 'eokoe123456',
-			phone_number: '+5511994567845',
-		};
-
-		axios({
-			method: 'POST',
-			url: 'http://dtupa.eokoe.com/openapi/login',
-			headers: { 'Content-Type': 'application/json' },
-			data,
-		})
-			.then((response) => {
-				console.log(response);
-			}, (err) => {
-				console.error(err);
-			});
-		*/
-	}
-
 	sourceName(source) {
 		if (source) {
 			return source.name;
@@ -62,34 +39,31 @@ class Notification extends React.Component {
 
 		this.toggleButton();
 
-		const body = {
+		const data = {
 			sensor_sample_id: this.props.alert.id,
 			description: this.description.value,
 			level: this.level.value,
 		};
 
-		const validation = validate(body);
+		const validation = validate(data);
 		this.setState({ validation });
 
 		if (validation.status) {
-			fetch(
-				'https://dtupa.eokoe.com/admin/alert?api_key=f17a9b9d-221a-47c0-9628-07b3a0fd1a59',
-				{
-					method: 'POST',
-					headers: {
-						Accept: 'application/json',
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(body),
-				},
-			).then(() => {
-				this.newNotification.reset();
-				this.toggleButton();
-			}).catch((err) => {
-				// eslint-disable-next-line no-console
-				console.error(err);
-				this.toggleButton();
-			});
+			const apiKey = window.sessionStorage.getItem('apiKey');
+			axios({
+				method: 'POST',
+				url: `https://dtupa.eokoe.com/admin/alert?api_key=${apiKey}`,
+				headers: { 'Content-Type': 'application/json' },
+				data,
+			})
+				.then((response) => {
+					console.log(response);
+					this.newNotification.reset();
+					this.toggleButton();
+				}, (err) => {
+					console.error(err);
+					this.toggleButton();
+				});
 		} else {
 			this.toggleButton();
 		}
