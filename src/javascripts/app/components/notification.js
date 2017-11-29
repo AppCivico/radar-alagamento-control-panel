@@ -20,6 +20,7 @@ class Notification extends React.Component {
 				errors: {},
 			},
 			button: true,
+			msg: '',
 		};
 
 		this.sendNotification = this.sendNotification.bind(this);
@@ -37,7 +38,7 @@ class Notification extends React.Component {
 	sendNotification(e) {
 		e.preventDefault();
 
-		this.toggleButton();
+		this.toggleButton(false);
 
 		const data = {
 			sensor_sample_id: this.props.alert.id,
@@ -57,20 +58,22 @@ class Notification extends React.Component {
 				data,
 			})
 				.then((response) => {
-					console.log(response);
+					const msg = `Notificação enviada com sucesso, ${response.data.pushed_to_users} usuários notificados`;
+					this.setState({ msg });
+
 					this.newNotification.reset();
-					this.toggleButton();
+					this.toggleButton(true);
 				}, (err) => {
-					console.error(err);
-					this.toggleButton();
+					this.setState({ msg: err });
+					this.toggleButton(true);
 				});
 		} else {
-			this.toggleButton();
+			this.toggleButton(true);
 		}
 	}
 
-	toggleButton() {
-		const button = !this.state.button;
+	toggleButton(state) {
+		const button = state;
 		this.setState({ button });
 	}
 
@@ -145,6 +148,8 @@ class Notification extends React.Component {
 										</label>
 										<span className="help-block">{this.state.validation.errors.level}</span>
 									</div>
+									<hr />
+									<p>{this.state.msg}</p>
 								</div>
 							</div>
 							<div className="modal-footer">
