@@ -32,7 +32,7 @@
     "cypress:run": "cypress run",
     "eject": "react-scripts eject",
     "fakeapi": "json-server --watch db.json --port 3030",
-    "lint:es": "eslint --ext .js src/javascripts/app --output-file test-reports/eslint.xml",
+    "lint:es": "eslint --ext .js src/javascripts/app --format junit --output-file test-reports/eslint.xml",
     "lint:sass": "sass-lint -c .sass-lint.yml 'src/stylesheets/**/*.scss' -v -q -i 'src/stylesheets/vendor/**/*.scss' --verbose --no-exit --format junit --output ./test-reports/sass-lint.xml",
     "lint": "npm-run-all --parallel lint:es lint:sass",
     "prebuild": "npm test && npm run lint",
