@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import { formatDate, validate } from '../../utils';
+import { validate } from '../../utils';
 
 class Notification extends React.Component {
 	constructor() {
@@ -21,18 +21,31 @@ class Notification extends React.Component {
 			},
 			button: true,
 			msg: '',
+			districts: [],
+			selectedDistricts: [],
 		};
 
 		this.sendNotification = this.sendNotification.bind(this);
 		this.toggleButton = this.toggleButton.bind(this);
+		this.getDistricts = this.getDistricts.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 
-	sourceName(source) {
-		if (source) {
-			return source.name;
-		}
+	componentDidMount() {
+		this.getDistricts();
+	}
 
-		return '';
+
+	getDistricts() {
+		axios.get('https://dtupa.eokoe.com/zone')
+			.then((response) => {
+				const zones = response.data.results;
+				let districts = [];
+				// eslint-disable-next-line array-callback-return
+				zones.map((item) =>	{ districts = [...districts, ...item.districts]; });
+				this.setState({ districts });
+			})
+			.catch(() => this.showError('Ocorreu um ao carregar os distritos, tente novamente'));
 	}
 
 	sendNotification(e) {
@@ -44,6 +57,7 @@ class Notification extends React.Component {
 			sensor_sample_id: this.props.alert.id,
 			description: this.description.value,
 			level: this.level.value,
+			districts: this.state.selectedDistricts,
 		};
 
 		const validation = validate(data);
@@ -72,9 +86,22 @@ class Notification extends React.Component {
 		}
 	}
 
+	sourceName(source) {
+		if (source) {
+			return source.name;
+		}
+
+		return '';
+	}
+
 	toggleButton(state) {
 		const button = state;
 		this.setState({ button });
+	}
+
+	handleChange(e) {
+		const selectedDistricts = [...e.target.options].filter(o => o.selected).map(o => o.value);
+		this.setState({ selectedDistricts });
 	}
 
 	renderOptions(item) {
@@ -82,7 +109,6 @@ class Notification extends React.Component {
 	}
 
 	render() {
-		const { alert } = this.props;
 		return (
 			<div className={`modal fade in ${this.props.isOpen ? 'open' : ''}`} id="notification">
 				<div className="modal-dialog">
@@ -106,27 +132,6 @@ class Notification extends React.Component {
 						>
 							<div className="modal-body">
 								<div className="form-group">
-									<h4>Dados do alerta selecionado:</h4>
-									<p>
-										<strong>ID: </strong>
-										{alert.id}
-										<br />
-										<strong>Título: </strong>
-										{alert.name}
-										<br />
-										<strong>Data: </strong>
-										{formatDate(alert.created_at)}
-										<br />
-										<strong>Fonte: </strong>
-										{this.sourceName(alert.source)}
-										<br />
-										<strong>Tipo: </strong>
-										{alert.type}
-										<br />
-										<strong>Descrição: </strong>
-										{alert.description}
-									</p>
-									<hr />
 									<h4>Notificação:</h4>
 									<div className={`form-group ${this.state.validation.errors.description ? 'has-error' : ''}`}>
 										<label htmlFor="description">Descrição
@@ -148,7 +153,17 @@ class Notification extends React.Component {
 										</label>
 										<span className="help-block">{this.state.validation.errors.level}</span>
 									</div>
-									<hr />
+									<div className={`form-group ${this.state.validation.errors.districts ? 'has-error' : ''}`}>
+										<label htmlFor="districts">Distrito
+											<select name="districts" onChange={this.handleChange} className="form-control" multiple>
+												{this.state.districts.map(item => (
+													<option key={`district-${item.id}`} value={item.id}>{item.name}</option>
+												))}
+											</select>
+										</label>
+										<span className="help-block">{this.state.validation.errors.districts}</span>
+									</div>
+									{this.state.msg && <hr />}
 									<p>{this.state.msg}</p>
 								</div>
 							</div>
