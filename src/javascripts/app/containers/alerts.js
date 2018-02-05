@@ -13,7 +13,7 @@ class Alerts extends React.Component {
 			alerts: [],
 			modal: false,
 			selectedAlert: {},
-			apiKey: 'b1a8674a-aa98-45b1-9457-c2722bfb74cc',
+			apiKey: '',
 		};
 
 		// This binding is necessary to make `this` work in the callback
