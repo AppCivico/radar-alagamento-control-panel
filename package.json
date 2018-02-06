@@ -35,7 +35,7 @@
     "lint:es": "eslint --ext .js src/javascripts/app --format junit --output-file test-reports/eslint.xml",
     "lint:sass": "sass-lint -c .sass-lint.yml 'src/stylesheets/**/*.scss' -v -q -i 'src/stylesheets/vendor/**/*.scss' --verbose --no-exit --format junit --output ./test-reports/sass-lint.xml",
     "lint": "npm-run-all --parallel lint:es lint:sass",
-    "prebuild": "npm test && npm run lint",
+    "prebuild": "npm run lint",
     "start": "PORT=9000 npm-run-all -p watch:css build:js",
     "test": "BROWSER=none npm run start & npm run cypress:run",
     "watch:css": "npm run build:css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/stylesheets/ -o src/ --watch --recursive"
