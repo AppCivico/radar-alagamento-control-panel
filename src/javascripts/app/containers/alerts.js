@@ -23,28 +23,22 @@ class Alerts extends React.Component {
 	}
 
 	componentWillMount() {
-		const data = {
-			email: 'lais@eokoe.com',
-			password: 'eokoe0101',
-		};
-
-		axios({
-			method: 'POST',
-			url: 'https://dtupa.eokoe.com/login',
-			headers: { 'Content-Type': 'application/json' },
-			data,
-		})
-			.then((response) => {
-				const apiKey = response.data.api_key;
-				this.setState({ apiKey });
-				window.sessionStorage.setItem('apiKey', apiKey);
-			}, (err) => {
-				console.error(err);
-			});
+		this.getCredentials();
 	}
 
 	componentDidMount() {
 		this.loadAlerts();
+	}
+
+	getCredentials() {
+		const apiKey = sessionStorage.getItem('apiKey');
+
+		if (apiKey) {
+			this.setState({ apiKey });
+		} else {
+			// eslint-disable-next-line
+			this.props.history.push('/');
+		}
 	}
 
 	toggleModal(e) {
