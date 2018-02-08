@@ -11,7 +11,6 @@
         <form @submit.prevent="validate()">
           <div class="modal-body">
             <div class="form-group">
-              <h4>Dados:</h4>
               <div :class="`form-group ${this.validation.errors.description ? 'has-error' : ''}`">
                 <label htmlFor="description">Descrição
                   <input
