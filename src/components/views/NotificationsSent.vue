@@ -104,7 +104,7 @@ export default {
   },
   methods: {
     loadNotifications () {
-      api.request('get', `/admin/alert?api_key=${this.token}`)
+      api.request('get', `/alert/reported?api_key=${this.token}`)
         .then((response) => {
           this.notifications = response.data.results
         }, (err) => {
