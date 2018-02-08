@@ -1,15 +1,23 @@
 <template>
   <ul class="sidebar-menu">
+    <li class="header">DADOS</li>
     <router-link tag="li" class="pageLink" to="/">
       <a>
         <i class="fa fa-table"></i>
-        <span class="page">Alertas</span>
+        <span class="page">Sensores</span>
+      </a>
+    </router-link>
+    <li class="header">NOTIFICAÇÕES</li>
+    <router-link tag="li" class="pageLink" to="/all-notifications-sent">
+      <a>
+        <i class="fa fa-table"></i>
+        <span class="page">Todas</span>
       </a>
     </router-link>
     <router-link tag="li" class="pageLink" to="/notifications-sent">
       <a>
         <i class="fa fa-table"></i>
-        <span class="page">Notificações</span>
+        <span class="page">Enviadas por mim</span>
       </a>
     </router-link>
   </ul>
