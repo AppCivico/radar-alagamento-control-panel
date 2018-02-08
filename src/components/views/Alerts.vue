@@ -1,44 +1,44 @@
 <template>
-  <section class="content">
-    <div class="row center-block">
-      <div class="col-md-12">
-        <div class="box">
+  <section class='content'>
+    <div class='row center-block'>
+      <div class='col-md-12'>
+        <div class='box'>
           <!-- /.box-header -->
-          <div class="box-body">
-            <div class="dataTables_wrapper form-inline dt-bootstrap" id="alerts_wrapper">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div id="alerts_length" class="dataTables_length">
+          <div class='box-body'>
+            <div class='dataTables_wrapper form-inline dt-bootstrap' id='alerts_wrapper'>
+              <div class='row'>
+                <div class='col-sm-6'>
+                  <div id='alerts_length' class='dataTables_length'>
 
                   </div>
                 </div>
               </div>
 
-              <div class="row">
-                <div class="col-sm-12 table-responsive">
-                  <table aria-describedby="alerts_info" role="grid" id="alerts" class="table table-bordered table-striped dataTable">
+              <div class='row'>
+                <div class='col-sm-12 table-responsive'>
+                  <table aria-describedby='alerts_info' role='grid' id='alerts' class='table table-bordered table-striped dataTable'>
                     <thead>
-                      <tr role="row">
-                        <th aria-sort="ascending" aria-controls="alerts" tabindex="0" class="sorting_asc">ID</th>
-                        <th aria-controls="alerts" tabindex="0" class="sorting">Title</th>
-                        <th aria-controls="alerts" tabindex="0" class="sorting">Date</th>
-                        <th aria-controls="alerts" tabindex="0" class="sorting">Source</th>
-                        <th aria-controls="alerts" tabindex="0" class="sorting">Type</th>
-                        <th aria-controls="alerts" tabindex="0" class="sorting">Descrição</th>
+                      <tr role='row'>
+                        <th aria-sort='ascending' aria-controls='alerts' tabindex='0' class='sorting_asc'>ID</th>
+                        <th aria-controls='alerts' tabindex='0' class='sorting'>Title</th>
+                        <th aria-controls='alerts' tabindex='0' class='sorting'>Date</th>
+                        <th aria-controls='alerts' tabindex='0' class='sorting'>Source</th>
+                        <th aria-controls='alerts' tabindex='0' class='sorting'>Type</th>
+                        <th aria-controls='alerts' tabindex='0' class='sorting'>Descrição</th>
                         <th />
                       </tr>
                     </thead>
                     <tbody>
-                      <template v-if="alerts.length > 0">
-                        <tr v-for="alert in alerts" role="row">
-                          <td class="sorting_1">{{alert.id}}</td>
+                      <template v-if='alerts.length > 0'>
+                        <tr v-for='alert in alerts' role='row'>
+                          <td class='sorting_1'>{{alert.id}}</td>
                           <td>{{alert.name}}</td>
                           <td>{{alert.created_at | formatDate}}</td>
                           <td>{{alert.source.name}}</td>
                           <td>{{alert.type}}</td>
                           <td>{{alert.description}}</td>
                           <td>
-                            <button type="button" class="btn btn-danger center-block" data-toggle="modal" data-target="#notification" @click="newNotification(alert)">
+                            <button type='button' class='btn btn-danger center-block' data-toggle='modal' data-target='#notification' @click='newNotification(alert)'>
                                 Criar notificação
                               </button>
                           </td>
@@ -46,8 +46,8 @@
                       </template>
                       <template v-else>
                         <tr>
-                          <td colspan="5">
-                            <div class="callout callout-info">
+                          <td colspan='5'>
+                            <div class='callout callout-info'>
                               <p>Nenhum alerta localizado</p>
                             </div>
                           </td>
@@ -56,12 +56,12 @@
                     </tbody>
                     <tfoot>
                       <tr>
-                        <th colspan="1" rowspan="1">ID</th>
-                        <th colspan="1" rowspan="1">Title</th>
-                        <th colspan="1" rowspan="1">Date</th>
-                        <th colspan="1" rowspan="1">Source</th>
-                        <th colspan="1" rowspan="1">Type</th>
-                        <th colspan="1" rowspan="1">Descrição</th>
+                        <th colspan='1' rowspan='1'>ID</th>
+                        <th colspan='1' rowspan='1'>Title</th>
+                        <th colspan='1' rowspan='1'>Date</th>
+                        <th colspan='1' rowspan='1'>Source</th>
+                        <th colspan='1' rowspan='1'>Type</th>
+                        <th colspan='1' rowspan='1'>Descrição</th>
                         <th />
                       </tr>
                     </tfoot>
@@ -74,7 +74,7 @@
         </div>
       </div>
     </div>
-    <Notification :alert="this.selectedAlert" />
+    <Notification :alert='this.selectedAlert' />
   </section>
 </template>
 
@@ -113,7 +113,24 @@ export default {
           this.alerts = response.data.results
         }, (err) => {
           console.error(err)
-        }).then(() => $('#alerts').DataTable())
+        }).then(() => $('#alerts').DataTable({
+          'language': {
+            'lengthMenu': 'Mostrar _MENU_ por página',
+            'zeroRecords': 'Nenhum alerta encontrado',
+            'info': 'Página _PAGE_ de _PAGES_',
+            'infoEmpty': 'Nenhum alerta encontrado',
+            'infoFiltered': '(filtrado de _MAX_)',
+            'paginate': {
+              'first': 'Primeira',
+              'last': 'Última',
+              'next': 'Próxima',
+              'previous': 'Anterior'
+            },
+            'loadingRecords': 'Carregando...',
+            'processing': 'Processando...',
+            'search': 'Busca:'
+          }
+        }))
     },
     newNotification (alert) {
       this.selectedAlert = alert
@@ -141,14 +158,14 @@ table.dataTable thead .sorting_desc:after {
 }
 
 table.dataTable thead .sorting:after {
-  content: "\f0dc";
+  content: '\f0dc';
 }
 
 table.dataTable thead .sorting_asc:after {
-  content: "\f0dd";
+  content: '\f0dd';
 }
 
 table.dataTable thead .sorting_desc:after {
-  content: "\f0de";
+  content: '\f0de';
 }
 </style>

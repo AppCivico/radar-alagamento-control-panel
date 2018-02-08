@@ -109,7 +109,24 @@ export default {
           this.notifications = response.data.results
         }, (err) => {
           console.error(err)
-        }).then(() => $('#notifications-sent').DataTable())
+        }).then(() => $('#notifications-sent').DataTable({
+          'language': {
+            'lengthMenu': 'Mostrar _MENU_ por página',
+            'zeroRecords': 'Nenhum alerta encontrado',
+            'info': 'Página _PAGE_ de _PAGES_',
+            'infoEmpty': 'Nenhum alerta encontrado',
+            'infoFiltered': '(filtrado de _MAX_)',
+            'paginate': {
+              'first': 'Primeira',
+              'last': 'Última',
+              'next': 'Próxima',
+              'previous': 'Anterior'
+            },
+            'loadingRecords': 'Carregando...',
+            'processing': 'Processando...',
+            'search': 'Busca:'
+          }
+        }))
     }
   }
 }
