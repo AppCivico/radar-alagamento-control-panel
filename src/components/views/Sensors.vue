@@ -5,10 +5,10 @@
         <div class='box'>
           <!-- /.box-header -->
           <div class='box-body'>
-            <div class='dataTables_wrapper form-inline dt-bootstrap' id='alerts_wrapper'>
+            <div class='dataTables_wrapper form-inline dt-bootstrap' id='sensors_wrapper'>
               <div class='row'>
                 <div class='col-sm-6'>
-                  <div id='alerts_length' class='dataTables_length'>
+                  <div id='sensors_length' class='dataTables_length'>
 
                   </div>
                 </div>
@@ -16,39 +16,41 @@
 
               <div class='row'>
                 <div class='col-sm-12 table-responsive'>
-                  <table aria-describedby='alerts_info' role='grid' id='alerts' class='table table-bordered table-striped dataTable'>
+                  <table aria-describedby='sensors_info' role='grid' id='sensors' class='table table-bordered table-striped dataTable'>
                     <thead>
                       <tr role='row'>
-                        <th aria-sort='ascending' aria-controls='alerts' tabindex='0' class='sorting_asc'>ID</th>
-                        <th aria-controls='alerts' tabindex='0' class='sorting'>Title</th>
-                        <th aria-controls='alerts' tabindex='0' class='sorting'>Date</th>
-                        <th aria-controls='alerts' tabindex='0' class='sorting'>Source</th>
-                        <th aria-controls='alerts' tabindex='0' class='sorting'>Type</th>
-                        <th aria-controls='alerts' tabindex='0' class='sorting'>Descrição</th>
+                        <th aria-sort='ascending' aria-controls='Sensors' tabindex='0' class='sorting_asc'>ID</th>
+                        <th aria-controls='sensors' tabindex='0' class='sorting'>Título</th>
+                        <th aria-controls='sensors' tabindex='0' class='sorting'>Data</th>
+                        <th aria-controls='sensors' tabindex='0' class='sorting'>Fonte</th>
+                        <th aria-controls='sensors' tabindex='0' class='sorting'>Tipo</th>
+                        <th aria-controls='sensors' tabindex='0' class='sorting'>Descrição</th>
                         <th />
                       </tr>
                     </thead>
                     <tbody>
-                      <template v-if='alerts.length > 0'>
-                        <tr v-for='alert in alerts' role='row'>
-                          <td class='sorting_1'>{{alert.id}}</td>
-                          <td>{{alert.name}}</td>
-                          <td>{{alert.created_at | formatDate}}</td>
-                          <td>{{alert.source.name}}</td>
-                          <td>{{alert.type}}</td>
-                          <td>{{alert.description}}</td>
+                      <template v-if='sensors.length > 0'>
+                        <tr v-for='sensor in sensors' role='row'>
+                          <td class='sorting_1'>{{sensor.id}}</td>
+                          <td>{{sensor.name}}</td>
+                          <td>{{sensor.created_at | formatDate}}</td>
+                          <td>{{sensor.source.name}}</td>
+                          <td>{{sensor.type}}</td>
+                          <td>{{sensor.description}}</td>
                           <td>
-                            <button type='button' class='btn btn-danger center-block' data-toggle='modal' data-target='#notification' @click='newNotification(alert)'>
-                                Criar notificação
+                            <router-link :to="`/sensor/${sensor.id}`">
+                              <button type='button' class='btn btn-default center-block'>
+                                Ver dados do sensor
                               </button>
+                            </router-link>
                           </td>
                         </tr>
                       </template>
                       <template v-else>
                         <tr>
-                          <td colspan='5'>
+                          <td colspan='7'>
                             <div class='callout callout-info'>
-                              <p>Nenhum alerta localizado</p>
+                              <p>Nenhum sensora localizado</p>
                             </div>
                           </td>
                         </tr>
@@ -74,7 +76,6 @@
         </div>
       </div>
     </div>
-    <Notification :alert='this.selectedAlert' />
   </section>
 </template>
 
@@ -85,18 +86,13 @@ import 'datatables.net'
 import 'datatables.net-bs'
 
 import api from '../../api'
-import Notification from './Notification'
 
 export default {
-  name: 'Alerts',
+  name: 'Sensors',
   data () {
     return {
-      alerts: [],
-      selectedAlert: {}
+      sensors: []
     }
-  },
-  components: {
-    Notification
   },
   computed: {
     token () {
@@ -104,21 +100,21 @@ export default {
     }
   },
   mounted () {
-    this.loadAlerts()
+    this.loadSensors()
   },
   methods: {
-    loadAlerts () {
+    loadSensors () {
       api.request('get', `/sensor?api_key=${this.token}`)
         .then((response) => {
-          this.alerts = response.data.results
+          this.sensors = response.data.results
         }, (err) => {
           console.error(err)
-        }).then(() => $('#alerts').DataTable({
+        }).then(() => $('#sensors').DataTable({
           'language': {
             'lengthMenu': 'Mostrar _MENU_ por página',
-            'zeroRecords': 'Nenhum alerta encontrado',
+            'zeroRecords': 'Nenhum sensor encontrado',
             'info': 'Página _PAGE_ de _PAGES_',
-            'infoEmpty': 'Nenhum alerta encontrado',
+            'infoEmpty': 'Nenhum sensora encontrado',
             'infoFiltered': '(filtrado de _MAX_)',
             'paginate': {
               'first': 'Primeira',
@@ -131,9 +127,6 @@ export default {
             'search': 'Busca:'
           }
         }))
-    },
-    newNotification (alert) {
-      this.selectedAlert = alert
     }
   }
 }
