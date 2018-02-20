@@ -36,7 +36,7 @@
               <div :class="`form-group ${this.validation.errors.districts ? 'has-error' : ''}`">
                 <label htmlFor="districts">Distrito(s)</label>
                 <p class="help-block">Selecione quais distritos serão notificados.</p>
-                <select name="districts" class="form-control zones" v-model="notification.districts" multiple="multiple">
+                <select name="districts[]" class="form-control zones" multiple="multiple">
                   <optgroup :label="zone.name" v-for="zone in zones">
                     <option v-for="district in zone.districts" :value="district.id">{{ district.name }}</option>
                   </optgroup>
@@ -111,6 +111,7 @@ export default {
   },
   methods: {
     getDistricts () {
+      var vm = this
       api.request('get', '/zone')
         .then((response) => {
           const zones = response.data.results
@@ -128,6 +129,12 @@ export default {
               }
             }
           })
+          .val(this.value)
+          .trigger('change')
+          // emit event on change.
+          .on('change', function () {
+            vm.notification.districts = $(this).val()
+          })
         })
     },
     validate () {
@@ -138,6 +145,7 @@ export default {
         this.validation = validation
       } else {
         notification.sensor_sample_id = this.alert.id
+
         api.request('post', `/admin/alert?api_key=${this.token}`, notification)
         .then((response) => {
           this.formMsg = `Notificação enviada com sucesso, ${response.data.pushed_to_users} usuários notificados`
