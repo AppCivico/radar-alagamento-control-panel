@@ -10,6 +10,7 @@
         </div>
         <form @submit.prevent="validate()">
           <div class="modal-body">
+            <p>Insira aqui os dados referentes a nova notifição que você deseja enviar:</p>
             <div class="form-group">
               <div :class="`form-group ${this.validation.errors.description ? 'has-error' : ''}`">
                 <label htmlFor="description">Descrição
