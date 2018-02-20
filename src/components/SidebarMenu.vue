@@ -24,7 +24,10 @@
 </template>
 <script>
 export default {
-  name: 'SidebarMenu'
+  name: 'SidebarMenu',
+  mounted () {
+    window.dispatchEvent(new Event('resize'))
+  }
 }
 </script>
 <style>
