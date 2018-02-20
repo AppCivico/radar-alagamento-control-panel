@@ -43,8 +43,11 @@
                       <template v-else>
                         <tr>
                           <td colspan="6">
-                            <div class="callout callout-info">
-                              <p>Você ainda não enviou nenhuma notificação</p>
+                            <div class="callout callout-info" v-if="loaded">
+                              <p>Nenhuma notificação foi enviada</p>
+                            </div>
+                            <div v-else>
+                              <p>Carregando informações</p>
                             </div>
                           </td>
                         </tr>
@@ -91,7 +94,8 @@ export default {
         alert: 'Alerta',
         emergency: 'Emergência',
         overflow: 'Enchente'
-      }
+      },
+      loaded: false
     }
   },
   computed: {
@@ -107,6 +111,7 @@ export default {
       api.request('get', `/admin/alert?api_key=${this.token}`)
         .then((response) => {
           this.notifications = response.data.results
+          this.loaded = true
         }, (err) => {
           console.error(err)
         }).then(() => $('#notifications-sent').DataTable({

@@ -49,8 +49,11 @@
                       <template v-else>
                         <tr>
                           <td colspan='7'>
-                            <div class='callout callout-info'>
-                              <p>Nenhum sensora localizado</p>
+                            <div class="callout callout-info" v-if="loaded">
+                              <p>Nenhum sensor localizado</p>
+                            </div>
+                            <div v-else>
+                              <p>Carregando informações</p>
                             </div>
                           </td>
                         </tr>
@@ -91,7 +94,8 @@ export default {
   name: 'Sensors',
   data () {
     return {
-      sensors: []
+      sensors: [],
+      loaded: false
     }
   },
   computed: {
@@ -107,6 +111,7 @@ export default {
       api.request('get', `/sensor?api_key=${this.token}`)
         .then((response) => {
           this.sensors = response.data.results
+          this.loaded = true
         }, (err) => {
           console.error(err)
         }).then(() => $('#sensors').DataTable({
