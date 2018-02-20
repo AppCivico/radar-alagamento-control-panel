@@ -16,7 +16,7 @@
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                 <input class="form-control" name="password" placeholder="Senha" type="password" v-model="password">
               </div>
-              <button type="submit" v-bind:class="'btn btn-primary btn-lg ' + loading">Entrar</button>
+              <button type="submit" v-bind:class="'btn btn-primary btn-lg ' + loading" :disabled="disabled">Entrar</button>
             </form>
 
             <!-- errors -->
@@ -38,12 +38,15 @@ export default {
       loading: '',
       username: '',
       password: '',
-      response: ''
+      response: '',
+      disabled: false
     }
   },
   methods: {
     checkCreds () {
       const {username, password} = this
+
+      this.disabled = true
 
       this.toggleLoading()
       this.resetResponse()
@@ -89,6 +92,7 @@ export default {
         console.log(error)
 
         this.response = 'E-mail ou senha inválidos. Tente novamente.'
+        this.disabled = false
         this.toggleLoading()
       })
     },
