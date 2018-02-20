@@ -127,6 +127,7 @@ export default {
         .then((response) => {
           this.formMsg = `Notificação enviada com sucesso, ${response.data.pushed_to_users} usuários notificados`
           this.clearFields()
+          this.clearErrors()
         }, (err) => {
           this.formMsg = `Notificação não enviada. Erro: ${err}`
         })
@@ -137,6 +138,13 @@ export default {
         description: '',
         level: '',
         districts: []
+      }
+      this.clearErrors()
+    },
+    clearErrors () {
+      this.validation = {
+        status: false,
+        errors: {}
       }
     }
   }
