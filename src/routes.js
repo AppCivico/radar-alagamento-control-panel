@@ -22,12 +22,14 @@ const routes = [
       {
         path: '',
         component: Sensors,
-        name: 'Sensores'
+        name: 'Sensores',
+        meta: {description: 'Lista de sensores disponíveis'}
       },
       {
         path: 'sensor/:id',
         component: Sensor,
-        name: 'Dados do sensor'
+        name: 'Dados do sensor',
+        meta: {description: 'Últimos dados enviados por esse sensor'}
       },
       {
         path: 'notifications-sent',
@@ -37,7 +39,8 @@ const routes = [
       {
         path: 'all-notifications-sent',
         component: AllNotificationsSent,
-        name: 'Notificações enviadas'
+        name: 'Notificações enviadas',
+        meta: {description: 'Lista de todas as notificações enviadas'}
       }
     ]
   }, {
