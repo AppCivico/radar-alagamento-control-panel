@@ -138,6 +138,17 @@ export default {
           })
         })
     },
+    logout () {
+      this.$store.commit('SET_USER', null)
+      this.$store.commit('SET_TOKEN', null)
+
+      if (window.localStorage) {
+        window.localStorage.setItem('user', null)
+        window.localStorage.setItem('token', null)
+      }
+
+      this.$router.push('/login')
+    },
     validate () {
       const {notification} = this
       const validation = validate(notification)
@@ -153,6 +164,10 @@ export default {
           this.clearFields()
           this.clearErrors()
         }, (err) => {
+          if (err.response.status === 403) {
+            console.log('Sem autorizando, deslogando ...');
+            this.logout();
+          }
           this.formMsg = `Notificação não enviada. Erro: ${err}`
         })
       }
