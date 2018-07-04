@@ -165,8 +165,8 @@ export default {
           this.clearErrors()
         }, (err) => {
           if (err.response.status === 403) {
-            console.log('Sem autorizando, deslogando ...');
-            this.logout();
+            console.log('Sem autorizando, deslogando ...')
+            this.logout()
           }
           this.formMsg = `Notificação não enviada. Erro: ${err}`
         })
