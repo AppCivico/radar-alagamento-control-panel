@@ -20,6 +20,12 @@
         <span class="page">Enviadas por mim</span>
       </a>
     </router-link>
+    <router-link tag="li" class="pageLink" to="/users-notifications">
+      <a>
+        <i class="fa fa-table"></i>
+        <span class="page">Enviadas por usuários</span>
+      </a>
+    </router-link>
   </ul>
 </template>
 <script>
