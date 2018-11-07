@@ -108,7 +108,7 @@ export default {
   },
   methods: {
     loadSensors () {
-      api.request('get', `/sensor?api_key=${this.token}`)
+      api.request('get', `/sensor?api_key=${this.token}&no_paging=1`)
         .then((response) => {
           this.sensors = response.data.results
           this.loaded = true
