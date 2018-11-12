@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
+	<link rel="shortcut icon" type="image/ico" href="https://www.datatables.net/favicon.ico">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
 
 	<title>ColReorder example - Individual column filtering</title>
@@ -27,12 +27,12 @@ $(document).ready(function() {
         var title = $('#example thead th').eq( $(this).index() ).text();
         $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
     } );
- 
+
     // DataTable
     var table = $('#example').DataTable( {
 		dom: 'Rlfrtip'
 	} );
-     
+
     // Apply the filter
     $("#example tfoot input").on( 'keyup change', function () {
         table
@@ -556,12 +556,12 @@ $(document).ready(function() {
         var title = $('#example thead th').eq( $(this).index() ).text();
         $(this).html( '&lt;input type=&quot;text&quot; placeholder=&quot;Search '+title+'&quot; /&gt;' );
     } );
- 
+
     // DataTable
     var table = $('#example').DataTable( {
 		dom: 'Rlfrtip'
 	} );
-     
+
     // Apply the filter
     $(&quot;#example tfoot input&quot;).on( 'keyup change', function () {
         table

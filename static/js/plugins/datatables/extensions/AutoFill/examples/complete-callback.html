@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
+	<link rel="shortcut icon" type="image/ico" href="https://www.datatables.net/favicon.ico">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
 
 	<title>AutoFill example - Complete callback</title>
@@ -27,7 +27,7 @@ $(document).ready(function() {
 	new $.fn.dataTable.AutoFill( table, {
 		complete: function ( altered ) {
 			var last = altered[ altered.length-1 ];
-			alert( 
+			alert(
 				altered.length+' cells were altered in this auto-fill. The '+
 				'value of the last cell altered was: '+last.oldValue+' and is '+
 				'now '+last.newValue
@@ -555,7 +555,7 @@ $(document).ready(function() {
 	new $.fn.dataTable.AutoFill( table, {
 		complete: function ( altered ) {
 			var last = altered[ altered.length-1 ];
-			alert( 
+			alert(
 				altered.length+' cells were altered in this auto-fill. The '+
 				'value of the last cell altered was: '+last.oldValue+' and is '+
 				'now '+last.newValue
